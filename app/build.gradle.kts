@@ -1,5 +1,6 @@
 plugins {
     id("java")
+
     application
 }
 
@@ -12,6 +13,10 @@ repositories {
 
 application {
     mainClass = "hexlet.code.App"
+}
+
+dependencies {
+    implementation("info.picocli:picocli:4.7.6")
 }
 
 dependencies {
