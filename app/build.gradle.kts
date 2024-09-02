@@ -17,6 +17,9 @@ application {
 
 dependencies {
     implementation("info.picocli:picocli:4.7.6")
+    implementation ("org.litote.jackson:jackson-generator:0.4.0")
+    implementation ("com.konghq:unirest-objectmapper-jackson:4.0.0-RC7")
+    implementation ("com.fasterxml.jackson.core:jackson-databind:2.15.1")
 }
 
 dependencies {
