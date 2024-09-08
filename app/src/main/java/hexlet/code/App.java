@@ -21,7 +21,8 @@ import java.util.concurrent.Callable;
 
         @Override
         public String call() throws Exception {
-            System.out.println(Differ.generate(filepath1, filepath2));
+            String differ = Differ.generate(filepath1, filepath2, format);
+            System.out.println(differ);
             return null;
         }
 
