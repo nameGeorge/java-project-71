@@ -26,11 +26,7 @@ public class Differ {
             Map<String, Object> sortedMap1 = Parser.parseFile(file1, fileFormat);
             Map<String, Object> sortedMap2 = Parser.parseFile(file2, fileFormat);
 
-
-            System.out.println(format);
             List<Map<String, Object>> different = CalcDiff.getDiff(sortedMap1, sortedMap2);
             return Formatter.diffResult(different, format);
         }
-
-
 }

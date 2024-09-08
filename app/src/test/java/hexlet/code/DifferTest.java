@@ -46,6 +46,23 @@ class DifferTest {
         var actual = Files.readString(path);
         assertEquals(result, actual);
     }
+    @Test
+    void testJsonPlain() throws IOException {
+        var result = Differ.generate("src/test/resources/file1.json",
+                "src/test/resources/file2.json", "plain");
+        Path path = Paths.get("src/test/resources/Plainresult2.txt");
+        var actual = Files.readString(path);
+        assertEquals(result, actual);
+    }
+
+    @Test
+    void testYamlPlain() throws IOException {
+        var result = Differ.generate("src/test/resources/file1.yaml",
+                "src/test/resources/file2.yaml", "plain");
+        Path path = Paths.get("src/test/resources/Plainresult.txt");
+        var actual = Files.readString(path);
+        assertEquals(result, actual);
+    }
 }
 
 
