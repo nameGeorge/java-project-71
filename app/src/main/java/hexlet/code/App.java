@@ -1,34 +1,33 @@
 package hexlet.code;
 
-import picocli.CommandLine.Option;
 import picocli.CommandLine;
 import picocli.CommandLine.Command;
+import picocli.CommandLine.Option;
 import picocli.CommandLine.Parameters;
-import java.io.File;
-import java.nio.file.Path;
 import java.util.concurrent.Callable;
 
-        @Command(name = "gendiff", mixinStandardHelpOptions = true,
+
+@Command(name = "gendiff", mixinStandardHelpOptions = true, version = "gendiff 1.0",
                 description = "Compares two configuration files and shows a difference.")
-        public class App implements Callable {
+        public class App implements Callable<String> {
+    @Option(names = { "-f", "--format" }, paramLabel = "format", description = "output format [default: stylish]")
+    String format;
+
+    @Parameters(index = "0", paramLabel = "filepath1", description = "path to first file")
+    String filepath1;
+
+    @Parameters(index = "1", paramLabel = "filepath2", description = "path to second file")
+    String filepath2;
+
+        @Override
+        public String call() throws Exception {
+            System.out.println(Differ.generate(filepath1, filepath2));
+            return null;
+        }
+
 
             public static void main(String... args) {
                 int exitCode = new CommandLine(new App()).execute(args);
-            }
-            @Option(names = {"-f", "--format"}, description = "output format [default: stylish]")
-            String format;
-            @Parameters(paramLabel = "filepath1", description = "path to first file")
-            Path file;
-            @Parameters(paramLabel = "filepath2", description = "path to second file")
-            Path file2;
-            @Override
-            public Object call() {
-                try {
-                    System.out.println(Differ.generate(file, file2));
-                } catch (Exception e) {
-                    throw new RuntimeException(e);
-                }
-                ;
-                return null;
+                System.exit(exitCode);
             }
         }
