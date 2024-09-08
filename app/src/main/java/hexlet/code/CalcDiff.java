@@ -16,23 +16,22 @@ public class CalcDiff {
         for (var key : keys) {
             Map<String, Object> line = new LinkedHashMap<>();
             line.put("key", key.toString());
-            if (sortedMap1.containsKey(key.toString()) && sortedMap2.containsKey(key.toString())) {
-                if (Objects.equals(sortedMap1.get(key.toString()), (sortedMap2.get(key.toString())))) {
-                    line.put("type", "unchanged");
-                    line.put("value", sortedMap1.get(key.toString()));
-                } else {
-                    line.put("type", "changed");
-                    line.put("oldvalue", sortedMap1.get(key.toString()));
-                    line.put("newvalue", sortedMap2.get(key.toString()));
-                }
-            }
-            if (!sortedMap1.containsKey(key) && sortedMap2.containsKey(key)) {
+
+            Object value2 = sortedMap2.get(key.toString());
+            Object value1 = sortedMap1.get(key.toString());
+            if (!sortedMap1.containsKey(key)) {
                 line.put("type", "added");
-                line.put("newvalue", sortedMap2.get(key.toString()));
-            }
-            if (sortedMap1.containsKey(key) && !sortedMap2.containsKey(key)) {
+                line.put("value2", value2);
+            } else if (!sortedMap2.containsKey(key)) {
                 line.put("type", "deleted");
-                line.put("oldvalue", sortedMap1.get(key.toString()));
+                line.put("value1", value1);
+            } else if (Objects.equals(value1, (value2))) {
+                line.put("type", "unchanged");
+                line.put("value", value1);
+            } else {
+                line.put("type", "changed");
+                line.put("value1", value1);
+                line.put("value2", value2);
             }
             result.add(line);
         }

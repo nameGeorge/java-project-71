@@ -1,35 +1,35 @@
-{
+[ {
   "key" : "chars1",
   "type" : "unchanged",
   "value" : [ "a", "b", "c" ]
 }, {
   "key" : "chars2",
   "type" : "changed",
-  "oldvalue" : [ "d", "e", "f" ],
-  "newvalue" : false
+   "value1" : [ "d", "e", "f" ],
+    "value2" : false
 }, {
   "key" : "checked",
   "type" : "changed",
-  "oldvalue" : false,
-  "newvalue" : true
+   "value1" : false,
+    "value2" : true
 }, {
   "key" : "default",
   "type" : "changed",
-  "oldvalue" : null,
-  "newvalue" : [ "value1", "value2" ]
+  "value1" : null,
+    "value2" : [ "value1", "value2" ]
 }, {
   "key" : "id",
   "type" : "changed",
-  "oldvalue" : 45,
-  "newvalue" : null
+   "value1" : 45,
+    "value2" : null
 }, {
   "key" : "key1",
   "type" : "deleted",
-  "oldvalue" : "value1"
+   "value1" : "value1"
 }, {
   "key" : "key2",
   "type" : "added",
-  "newvalue" : "value2"
+   "value2" : "value2"
 }, {
   "key" : "numbers1",
   "type" : "unchanged",
@@ -37,36 +37,36 @@
 }, {
   "key" : "numbers2",
   "type" : "changed",
-  "oldvalue" : [ 2, 3, 4, 5 ],
-  "newvalue" : [ 22, 33, 44, 55 ]
+   "value1" : [ 2, 3, 4, 5 ],
+    "value2" : [ 22, 33, 44, 55 ]
 }, {
   "key" : "numbers3",
   "type" : "deleted",
-  "oldvalue" : [ 3, 4, 5 ]
+   "value1" : [ 3, 4, 5 ]
 }, {
   "key" : "numbers4",
   "type" : "added",
-  "newvalue" : [ 4, 5, 6 ]
+   "value2" : [ 4, 5, 6 ]
 }, {
   "key" : "obj1",
   "type" : "added",
-  "newvalue" : {
+  "value2" : {
     "nestedKey" : "value",
     "isNested" : true
   }
 }, {
   "key" : "setting1",
   "type" : "changed",
-  "oldvalue" : "Some value",
-  "newvalue" : "Another value"
+   "value1" : "Some value",
+    "value2" : "Another value"
 }, {
   "key" : "setting2",
   "type" : "changed",
-  "oldvalue" : 200,
-  "newvalue" : 300
+  "value1" : 200,
+   "value2" : 300
 }, {
   "key" : "setting3",
   "type" : "changed",
-  "oldvalue" : true,
-  "newvalue" : "none"
-}
+  "value1" : true,
+    "value2" : "none"
+} ]

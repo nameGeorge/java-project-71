@@ -4,38 +4,37 @@ import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 
 public class Plain {
     public static String getPlain(List<Map<String, Object>> different) {
         String result = "";
+        String changed = "Property '%s' was updated. From %s to %s\n";
+        String deleted = "Property '%s' was removed\n";
+        String added = "Property '%s' was added with value: %s\n";
         for (var diff : different) {
+            String key = diff.get("key").toString();
             if (diff.get("type").toString().equals("changed")) {
-                result += "Property '" + diff.get("key").toString() + "' was updated. From "
-                        + typeOfValue(diff.get("oldvalue")) + " to " + typeOfValue(diff.get("newvalue")) + "\n";
+                result += String.format(changed, key, typeOfValue(diff.get("value1")),
+                        typeOfValue(diff.get("value2")));
             }
             if (diff.get("type").toString().equals("added")) {
-                result += "Property '" + diff.get("key").toString() + "' was added with value: "
-                        + typeOfValue(diff.get("newvalue")) + "\n";
+                result += String.format(added, key, typeOfValue(diff.get("value2")));
             }
             if (diff.get("type").toString().equals("deleted")) {
-                result += "Property '" + diff.get("key").toString() + "' was removed\n";
+                result += String.format(deleted, key);
             }
         }
-        return result;
+        return result.substring(0, result.length() - 1);
     }
 
     public static String typeOfValue(Object value) {
-        String returnValue = "";
+
         if (value instanceof ArrayList<?> || value instanceof LinkedHashMap<?, ?>) {
-            returnValue = "[complex value]";
-        } else if (Objects.isNull(value)) {
-            returnValue = "null";
+            return  "[complex value]";
         } else if (value instanceof String) {
-            returnValue = "'" + value + "'";
+            return  "'" + value + "'";
         } else {
-            returnValue = value.toString();
+            return String.valueOf(value);
         }
-        return returnValue;
     }
 }

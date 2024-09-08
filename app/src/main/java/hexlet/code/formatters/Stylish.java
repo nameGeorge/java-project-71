@@ -7,20 +7,25 @@ public class Stylish {
     public static String getStylish(List<Map<String, Object>> different) {
         String result = "{\n";
         for (var diff : different) {
-            if (diff.get("type").toString().equals("unchanged")) {
-                result += "  " + diff.get("key").toString() + ": " + diff.get("value") + "\n";
-            }
-            if (diff.get("type").toString().equals("changed")) {
-                result += "- " + diff.get("key").toString() + ": " + diff.get("oldvalue") + "\n";
-                result += "+ " + diff.get("key").toString() + ": " + diff.get("newvalue") + "\n";
-            }
-            if (diff.get("type").toString().equals("added")) {
-                result += "+ " + diff.get("key").toString() + ": " + diff.get("newvalue") + "\n";
-            }
-            if (diff.get("type").toString().equals("deleted")) {
-                result += "- " + diff.get("key").toString() + ": " + diff.get("oldvalue") + "\n";
+            String type = diff.get("type").toString();
+            switch (type) {
+                case "unchanged":
+                    result += "    " + diff.get("key").toString() + ": " + diff.get("value") + "\n";
+                    break;
+                case "changed":
+                    result += "  - " + diff.get("key").toString() + ": " + diff.get("value1") + "\n";
+                    result += "  + " + diff.get("key").toString() + ": " + diff.get("value2") + "\n";
+                    break;
+                case "added":
+                    result += "  + " + diff.get("key").toString() + ": " + diff.get("value2") + "\n";
+                    break;
+                case "deleted":
+                    result += "  - " + diff.get("key").toString() + ": " + diff.get("value1") + "\n";
+                    break;
+                default:
+                    break;
             }
         }
-        return result + "}\n";
+        return result + "}";
     }
 }
