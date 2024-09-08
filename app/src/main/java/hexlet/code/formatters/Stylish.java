@@ -21,8 +21,6 @@ public class Stylish {
                 result += "- " + diff.get("key").toString() + ": " + diff.get("oldvalue") + "\n";
             }
         }
-
-
         return result + "}\n";
     }
 }

@@ -10,14 +10,14 @@ public class Parser {
         switch (format) {
             case "json":
                 ObjectMapper objectMapperJson = new ObjectMapper();
-                Map<String, Object> mapjson
+                Map<String, Object> mapJson
                         = objectMapperJson.readValue(file, new TypeReference<Map<String, Object>>() { });
-                Map<String, Object> sortedJson = new TreeMap<>(mapjson);
+                Map<String, Object> sortedJson = new TreeMap<>(mapJson);
                 return sortedJson;
             case "yaml", "yml":
                 ObjectMapper objectMapperYml = new ObjectMapper(new YAMLFactory());
-                Map<String, Object> mapyml = objectMapperYml.readValue(file, Map.class);
-                Map<String, Object> sortedYml = new TreeMap<>(mapyml);
+                Map<String, Object> mapYml = objectMapperYml.readValue(file, Map.class);
+                Map<String, Object> sortedYml = new TreeMap<>(mapYml);
                 return sortedYml;
             default:
                 throw new RuntimeException("format not supported");

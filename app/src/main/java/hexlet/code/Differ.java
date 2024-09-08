@@ -1,6 +1,5 @@
 package hexlet.code;
 
-
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -8,13 +7,7 @@ import java.nio.file.Paths;
 import java.util.List;
 import java.util.Map;
 
-import java.util.List;
-import java.util.ArrayList;
-import java.util.TreeSet;
-import java.util.LinkedHashMap;
-
 public class Differ {
-
         public static String generate(String filepath1, String filepath2, String format) throws IOException {
 
             Path path1 = Paths.get(filepath1);

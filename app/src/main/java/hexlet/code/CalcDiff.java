@@ -24,7 +24,6 @@ public class CalcDiff {
                     line.put("type", "changed");
                     line.put("oldvalue", sortedMap1.get(key.toString()));
                     line.put("newvalue", sortedMap2.get(key.toString()));
-
                 }
             }
             if (!sortedMap1.containsKey(key) && sortedMap2.containsKey(key)) {
