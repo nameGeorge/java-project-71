@@ -42,7 +42,11 @@ class DifferTest {
         assertEquals(result1, stylishResult);
     }
 
-
+    @Test
+    void testYamlDefault() throws Exception {
+        var result2 = Differ.generate(YAMLFILE1, YAMLFILE2);
+        assertEquals(result2, stylishResult);
+    }
 
     @Test
     void testJsonDefault() throws Exception {
