@@ -1,7 +1,5 @@
-run-dist:
-        build\install\app\bin\app -h
-
 report:
-        gradle jacocoTestReport
+        make -C app report
 
-.PHONY: build
+run-dist:
+        make -C app run-dist
