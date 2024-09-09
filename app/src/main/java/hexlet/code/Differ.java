@@ -1,35 +1,41 @@
 package hexlet.code;
 
-import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.List;
-import java.util.Map;
+import java.io.IOException;
 
 public class Differ {
-        public static String generate(String filepath1, String filepath2, String format) throws IOException {
-            Path path1 = Paths.get(filepath1);
-        Path path2 = Paths.get(filepath2);
-            String fileFormat = formatFile(filepath1, filepath2);
-        String file1 = Files.readString(path1);
-        String file2 = Files.readString(path2);
-            Map<String, Object> sortedMap1 = Parser.parseFile(file1, fileFormat);
-            Map<String, Object> sortedMap2 = Parser.parseFile(file2, fileFormat);
 
-            List<Map<String, Object>> different = CalcDiff.getDiff(sortedMap1, sortedMap2);
-            return Formatter.diffResult(different, format);
-        }
-    public static String generate(String filepath1, String filepath2) throws IOException {
-        return generate(filepath1, filepath2, "stylish");
+    public static String generate(String path1, String path2) throws Exception {
+        return generate(path1, path2, "stylish");
     }
-        public static String formatFile(String filepath1, String filepath2) {
-            String format1 = filepath1.substring(filepath1.lastIndexOf(".") + 1);
-            String format2 = filepath2.substring(filepath2.lastIndexOf(".") + 1);
-            if (format1.equals(format2)) {
-                return format1;
-            } else {
-                throw new RuntimeException("different files format not supported");
-            }
-        }
+
+    public static String generate(String path1, String path2, String format) throws Exception {
+        String data1 = readFile(path1);
+        String data2 = readFile(path2);
+
+        String format1 = getFileFormat(path1);
+        String format2 = getFileFormat(path2);
+
+        Parser parser = new Parser();
+        var mapData1 = Parser.parseFile(data1, format1);
+        var mapData2 = Parser.parseFile(data2, format2);
+
+        var diff = CalcDiff.getDiff(mapData1, mapData2);
+
+        return Formatter.diffResult(diff, format);
     }
+
+    private static String readFile(String path) throws Exception {
+        Path filePath = Paths.get(path);
+        if (!Files.exists(filePath) || !Files.isReadable(filePath)) {
+            throw new IOException("File does not exist or is not readable: " + path);
+        }
+        return new String(Files.readAllBytes(filePath));
+    }
+
+    private static String getFileFormat(String path) {
+        return path.substring(path.lastIndexOf(".") + 1);
+    }
+}

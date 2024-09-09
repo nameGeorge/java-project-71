@@ -3,8 +3,6 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-
-import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.List;
@@ -33,43 +31,43 @@ class DifferTest {
     }
 
     @Test
-    void testJsonStylish() throws IOException {
+    void testJsonStylish() throws Exception {
         var result = Differ.generate(JASONFILE1, JASONFILE2, "stylish");
         assertEquals(result, stylishResult);
     }
 
     @Test
-    void testYamlStylish() throws IOException {
+    void testYamlStylish() throws Exception {
         var result1 = Differ.generate(YAMLFILE1, YAMLFILE2, "stylish");
         assertEquals(result1, stylishResult);
     }
 
     @Test
-    void testYamlDefault() throws IOException {
+    void testYamlDefault() throws Exception {
         var result2 = Differ.generate(YAMLFILE1, YAMLFILE2);
         assertEquals(result2, stylishResult);
     }
 
     @Test
-    void testJsonDefault() throws IOException {
+    void testJsonDefault() throws Exception {
         var result3 = Differ.generate(JASONFILE1, JASONFILE2);
         assertEquals(result3, stylishResult);
     }
 
     @Test
-    void testJsonPlain() throws IOException {
+    void testJsonPlain() throws Exception {
         var result4 = Differ.generate(JASONFILE1, JASONFILE2, "plain");
         assertEquals(result4, plainResult);
     }
 
     @Test
-    void testYamlPlain() throws IOException {
+    void testYamlPlain() throws Exception {
         var result5 = Differ.generate(YAMLFILE1, YAMLFILE2, "plain");
         assertEquals(result5, plainResult);
     }
 
     @Test
-    void testJsonJson() throws IOException {
+    void testJsonJson() throws Exception {
         var result6 = Differ.generate(JASONFILE1, JASONFILE2, "json");
         ObjectMapper objectmapper = new ObjectMapper();
         List<Map<String, Object>> mapJson
@@ -80,7 +78,7 @@ class DifferTest {
     }
 
     @Test
-    void testYamlJson() throws IOException {
+    void testYamlJson() throws Exception {
         var result7 = Differ.generate(YAMLFILE1, YAMLFILE2, "json");
         ObjectMapper objectmapper = new ObjectMapper();
         List<Map<String, Object>> mapYaml

@@ -1,4 +1,5 @@
 package hexlet.code;
+
 import com.fasterxml.jackson.core.JsonProcessingException;
 import hexlet.code.formatters.JsonFormat;
 import hexlet.code.formatters.Plain;
@@ -12,6 +13,7 @@ public class Formatter {
         return switch (format) {
             case "stylish" -> Stylish.getStylish(different);
             case "plain" -> Plain.getPlain(different);
+            case "json" -> JsonFormat.getJson(different);
             default -> throw new RuntimeException("format not supported");
         };
     }
