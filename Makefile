@@ -1,11 +1,7 @@
-build:
-	make -C app build
-
-test:
-	make -C app test
-
-lint:
-	make -C app lint
+run-dist:
+        build\install\app\bin\app -h
 
 report:
-	make -C app report
+        gradle jacocoTestReport
+
+.PHONY: build
